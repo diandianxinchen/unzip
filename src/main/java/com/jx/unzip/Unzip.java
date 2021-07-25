@@ -9,7 +9,7 @@ public class Unzip {
 
     public static String getFileNameWithoutType(String fileName) {
         int indexOf = fileName.lastIndexOf(".");
-        return indexOf != -1 ? fileName.substring(indexOf + 1) : fileName;
+        return indexOf != -1 ? fileName.substring(0, indexOf) : fileName;
     }
 
     public static File newFile(File destinationDir, ZipEntry zipEntry) throws IOException {
@@ -26,7 +26,7 @@ public class Unzip {
     }
 
     public static void main(String[] args) throws IOException {
-        String fileZipPath = "D:\\unzip_test\\01-开篇词 (1讲).zip";
+        String fileZipPath = "D:\\unzip_test\\demo.zip";
         File fileZip = new File(fileZipPath);
         if (!fileZip.exists()) {
             throw new RuntimeException("找不到文件," + fileZipPath);
