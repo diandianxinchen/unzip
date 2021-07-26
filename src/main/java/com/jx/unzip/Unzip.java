@@ -7,11 +7,6 @@ import java.util.zip.ZipInputStream;
 
 public class Unzip {
 
-    public static String getFileNameWithoutType(String fileName) {
-        int indexOf = fileName.lastIndexOf(".");
-        return indexOf != -1 ? fileName.substring(0, indexOf) : fileName;
-    }
-
     public static File newFile(File destinationDir, ZipEntry zipEntry) throws IOException {
         File destFile = new File(destinationDir, zipEntry.getName());
 
@@ -35,9 +30,8 @@ public class Unzip {
         // 默认解压到当前路径
         String path = fileZip.getParent();
         String fileZipName = fileZip.getName();
-        String destFileName = getFileNameWithoutType(fileZipName);
-        File destDir = new File(path, destFileName);
-        System.out.println(fileZip);
+        File destDir = new File(path);
+
         ZipInputStream zis = new ZipInputStream(new FileInputStream(fileZip), Charset.forName("GBK"));
         ZipEntry zipEntry = zis.getNextEntry();
         byte[] buffer = new byte[1024];
